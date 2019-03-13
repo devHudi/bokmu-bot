@@ -101,7 +101,7 @@ def send_start_message():
                     },
                     {
                         "type": "mrkdwn",
-                        "text": "*알림시각*\n오전 9시"
+                        "text": "*알림시각*\n{}시".format(NOTIFY_AT)
                     },
                     {
                         "type": "mrkdwn",
