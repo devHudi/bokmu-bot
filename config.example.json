@@ -3,7 +3,7 @@
     "apiToken": "Slack App API Token (Bot User OAuth Access Token)",
     "clientId": "Slack App Client ID",
     "clientSecret": "Slack App Client Secret",
-    "botToken": "Slack App Verification Token",
+    "verificationToken": "Slack App Verification Token",
     "channelId": "Slack Channel Id"
   },
   "bot": {

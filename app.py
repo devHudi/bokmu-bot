@@ -11,7 +11,7 @@ config = json.loads(open("./config.json").read())
 API_TOKEN = config["slack"]["apiToken"]
 CLIENT_ID = config["slack"]["clientId"]
 CLIENT_SECRET = config["slack"]["clientSecret"]
-BOT_TOKEN = config["slack"]["botToken"]
+VERIFICATION_TOKEN = config["slack"]["verificationToken"]
 CHANNEL_ID = config["slack"]["channelId"]
 
 YOUR_NAME = config["bot"]["yourName"]
