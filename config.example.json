@@ -1,0 +1,15 @@
+{
+  "slack": {
+    "apiToken": "Slack App API Token (Bot User OAuth Access Token)",
+    "clientId": "Slack App Client ID",
+    "clientSecret": "Slack App Client Secret",
+    "botToken": "Slack App Verification Token",
+    "channelId": "Slack Channel Id"
+  },
+  "bot": {
+    "yourName": "사용자 이름",
+    "notifyAt": "슬랙에 매일 메세지를 보낼 시각. 24시간제 시간제로 기입 (오전 7시는 7, 오후 1시는 13)",
+    "startDate": "yyyy/mm/dd (입대일자)",
+    "endDate": "yyyy/mm/dd (제대일자)"
+  }
+}
