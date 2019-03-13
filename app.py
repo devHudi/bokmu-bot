@@ -19,6 +19,11 @@ NOTIFY_AT = config["bot"]["notifyAt"]
 START_DATE = parser.parse(config["bot"]["startDate"])
 END_DATE = parser.parse(config["bot"]["endDate"])
 
+START_IMG = "https://i.imgur.com/PkbKJY1.jpg"  # 시작 메세지 이미지
+DAILY_BEFORE_ENLISTMENT_IMG = "https://i.imgur.com/uM1dyrM.png"  # 군입대 전 메세지 이미지
+DAILY_AFTER_ENLISTMENT_IMG = "https://i.imgur.com/U059WfE.png"  # 군입대 후 메세지 이미지
+
+
 # init slack client
 sc = SlackClient(API_TOKEN)
 
@@ -109,7 +114,7 @@ def send_start_message():
                 ],
                 "accessory": {
                     "type": "image",
-                    "image_url": "https://i.imgur.com/PkbKJY1.jpg",
+                    "image_url": START_IMG,
                     "alt_text": "plants"
                 }
             },
@@ -170,7 +175,7 @@ def _send_daily_message_before_enlistment():
                 ],
                 "accessory": {
                     "type": "image",
-                    "image_url": "https://i.imgur.com/uM1dyrM.png",
+                    "image_url": DAILY_BEFORE_ENLISTMENT_IMG,
                     "alt_text": "plants"
                 }
             },
@@ -234,7 +239,7 @@ def _send_daily_message_after_enlistment():
                 ],
                 "accessory": {
                     "type": "image",
-                    "image_url": "https://i.imgur.com/U059WfE.png",
+                    "image_url": DAILY_AFTER_ENLISTMENT_IMG,
                     "alt_text": "plants"
                 }
             },
