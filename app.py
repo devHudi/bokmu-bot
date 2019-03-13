@@ -92,8 +92,8 @@ def send_start_message():
             {
                 "type": "section",
                 "text": {
-                        "type": "mrkdwn",
-                    "text": "복무봇이 시작되었습니다. :gun:"
+                    "type": "mrkdwn",
+                    "text": "복무봇이 시작되었습니다. :sob:"
                 }
             },
             {
@@ -151,7 +151,7 @@ def _send_daily_message_before_enlistment():
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                        "text": "`{}` 오늘, *{}* 님은 입대까지 {}일 남았습니다.\n\n".format(formatted_today_date, YOUR_NAME, -after_enlistment_days)
+                    "text": "`{}` 오늘, *{}* 님은 입대까지 {}일 남았습니다.\n\n".format(formatted_today_date, YOUR_NAME, -after_enlistment_days)
                 }
             },
             {
@@ -215,7 +215,7 @@ def _send_daily_message_after_enlistment():
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                        "text": "`{}` 오늘, *{}* 님의 복무율 \n\n 복무율 *{}%* |  {} | *{}일 / {}일*".format(formatted_today_date, YOUR_NAME, percentage, progress_bar, after_enlistment_days, total_days)
+                    "text": "`{}` 오늘, *{}* 님의 복무율 \n\n 복무율 *{}%* |  {} | *{}일 / {}일*".format(formatted_today_date, YOUR_NAME, percentage, progress_bar, after_enlistment_days, total_days)
                 }
             },
             {
