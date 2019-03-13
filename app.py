@@ -271,11 +271,26 @@ def send_daily_message():
     else:
         _send_daily_message_after_enlistment()
 
+    print("[복무봇] 현재 복무율 전송")
+
 
 if __name__ == '__main__':
+    notify_at = "{}:00".format(str(NOTIFY_AT).zfill(2))
+
+    print("[복무봇] 실행 준비중...")
+
     send_start_message()
+    print("[복무봇] 실행 메세지 전송")
+
     send_daily_message()
-    schedule.every().day.at("{}:00".format(NOTIFY_AT)).do(send_daily_message)
+    print("[복무봇] 현재 복무율 최초 전송")
+    # 봇 실행시 최초 실행
+
+    # 스케줄 시작
+    schedule.every().day.at(notify_at).do(send_daily_message)
+    print("[복무봇] 복무봇 스케줄 설정: {} 마다 실행".format(notify_at))
+
+    print("[복무봇] 스케줄링 시작!")
     while True:
         schedule.run_pending()
         time.sleep(1)
