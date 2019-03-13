@@ -202,6 +202,7 @@ def _send_daily_message_after_enlistment():
     progress_bar = _render_progress_bar()
     total_days = _calc_total_days()
     after_enlistment_days = _calc_after_enlistment_days()
+    remaining_days = _calc_remaining_days()
 
     sc.api_call(
         "chat.postMessage",
@@ -235,6 +236,10 @@ def _send_daily_message_after_enlistment():
                     {
                         "type": "mrkdwn",
                         "text": "*현재 복무일*\n{}일".format(after_enlistment_days)
+                    },
+                    {
+                        "type": "mrkdwn",
+                        "text": "*남은 복무일*\n{}일".format(remaining_days)
                     }
                 ],
                 "accessory": {
