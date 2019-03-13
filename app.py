@@ -97,6 +97,9 @@ def send_start_message():
                 }
             },
             {
+                "type": "divider"
+            },
+            {
                 "type": "section",
                 "fields": [
                     {
