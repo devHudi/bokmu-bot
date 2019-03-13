@@ -19,55 +19,43 @@ NOTIFY_AT = config["bot"]["notifyAt"]
 START_DATE = parser.parse(config["bot"]["startDate"])
 END_DATE = parser.parse(config["bot"]["endDate"])
 
-
 # init slack client
 sc = SlackClient(API_TOKEN)
 
-# sc.api_call(
-#     "channels.join",
-#     channel=CHANNEL_ID
-# )
 
-# sc.api_call(
-#     "chat.postMessage",
-#     channel=CHANNEL_ID,
-#     text="Hello from Python! :point_right:"
-# )
-
-
-def format_date(date):
+def _format_date(date):
     return date.strftime("%Y년 %m월 %d일")
 
 
-def calc_total_days():
+def _calc_total_days():
     # 총 군복무 일 수
     total_days = (END_DATE - START_DATE).days
     return total_days
 
 
-def calc_remaining_days():
+def _calc_remaining_days():
     # 남은 군복무 일 수
     remaining_days = (END_DATE - datetime.now()).days
     return remaining_days
 
 
-def calc_after_enlistment_days():
+def _calc_after_enlistment_days():
     # 군 입대후 지난 일 수. 음수라면 입대 전
     after_enlistment_days = (datetime.now() - START_DATE).days
     return after_enlistment_days
 
 
-def calc_percentage():
+def _calc_percentage():
     # 복무율
     percentage = round(
-        (calc_after_enlistment_days() / calc_total_days()) * 100, 2)
+        (_calc_after_enlistment_days() / _calc_total_days()) * 100, 2)
     return percentage
 
 
-def render_progress_bar():
+def _render_progress_bar():
     # 텍스트 프로그레스바
     total_squares = 20
-    filled_squares = round(calc_percentage() / (100 / total_squares))
+    filled_squares = round(_calc_percentage() / (100 / total_squares))
     unfilled_squares = total_squares - filled_squares
 
     progress_bar = ""
@@ -82,8 +70,8 @@ def render_progress_bar():
 
 
 def send_start_message():
-    formatted_start_date = format_date(START_DATE)
-    formatted_end_date = format_date(END_DATE)
+    formatted_start_date = _format_date(START_DATE)
+    formatted_end_date = _format_date(END_DATE)
 
     sc.api_call(
         "chat.postMessage",
@@ -139,12 +127,12 @@ def send_start_message():
 
 
 def _send_daily_message_before_enlistment():
-    formatted_today_date = format_date(datetime.now())
-    formatted_start_date = format_date(START_DATE)
-    formatted_end_date = format_date(END_DATE)
+    formatted_today_date = _format_date(datetime.now())
+    formatted_start_date = _format_date(START_DATE)
+    formatted_end_date = _format_date(END_DATE)
 
-    total_days = calc_total_days()
-    after_enlistment_days = calc_after_enlistment_days()
+    total_days = _calc_total_days()
+    after_enlistment_days = _calc_after_enlistment_days()
 
     sc.api_call(
         "chat.postMessage",
@@ -201,14 +189,14 @@ def _send_daily_message_before_enlistment():
 
 
 def _send_daily_message_after_enlistment():
-    formatted_today_date = format_date(datetime.now())
-    formatted_start_date = format_date(START_DATE)
-    formatted_end_date = format_date(END_DATE)
+    formatted_today_date = _format_date(datetime.now())
+    formatted_start_date = _format_date(START_DATE)
+    formatted_end_date = _format_date(END_DATE)
 
-    percentage = calc_percentage()
-    progress_bar = render_progress_bar()
-    total_days = calc_total_days()
-    after_enlistment_days = calc_after_enlistment_days()
+    percentage = _calc_percentage()
+    progress_bar = _render_progress_bar()
+    total_days = _calc_total_days()
+    after_enlistment_days = _calc_after_enlistment_days()
 
     sc.api_call(
         "chat.postMessage",
@@ -265,7 +253,7 @@ def _send_daily_message_after_enlistment():
 
 
 def send_daily_message():
-    after_enlistment_days = calc_after_enlistment_days()
+    after_enlistment_days = _calc_after_enlistment_days()
     if (after_enlistment_days < 0):
         _send_daily_message_before_enlistment()
     else:
